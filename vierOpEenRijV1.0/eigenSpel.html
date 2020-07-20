@@ -1,0 +1,1372 @@
+
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<html>
+<head>
+<style>
+h1{ 
+            background-color: yellow;
+            font-weight: 300;
+            font-family: monospace;
+            font-size: 40px;
+		}
+div{ 
+	font-family: monospace;
+	color: blue;
+
+}
+input{ 
+	background-color: turquoise;
+}
+p{ 
+	font-family: monospace;
+	color: blue;
+	background-color: yellow;
+	width: 400px;
+}
+td{
+border: 5px solid #045bcd;
+/* border-radius: 50%; */
+width: 40px;
+height: 40px;
+background: url(gaatje.png) 0 0;
+color: grey;
+position: relative;
+z-index: +1;
+
+
+
+}
+table{ 
+	background-color: #ececec;
+	padding: 5px;
+	
+}
+
+.fallCoin { 
+
+/* background-color: cornflowerblue; */
+/* border: 5px solid black; */
+border-radius: 50%;
+/* color: #fff; */
+width: 48px;
+height: 48px;
+position: absolute;
+margin-left: 9px;
+z-index: 1;
+
+
+
+}
+
+
+</style>
+
+<script>
+
+
+	var counterkolom = [0,0,0,0,0,0,0];
+
+	var xRow0painted = [0,0,0,0,0,0,0];
+	var xRow1painted = [0,0,0,0,0,0,0];
+	var xRow2painted = [0,0,0,0,0,0,0];
+	var xRow3painted = [0,0,0,0,0,0,0];
+	var xRow4painted = [0,0,0,0,0,0,0];
+	var xRow5painted = [0,0,0,0,0,0,0];
+
+	var yRow0painted = [0,0,0,0,0,0];
+	var yRow1painted = [0,0,0,0,0,0];
+	var yRow2painted = [0,0,0,0,0,0];
+	var yRow3painted = [0,0,0,0,0,0];
+	var yRow4painted = [0,0,0,0,0,0];
+	var yRow5painted = [0,0,0,0,0,0];
+	var yRow6painted = [0,0,0,0,0,0];
+
+	var diagUpRow0painted = [0,0,0,0];
+	var diagUpRow1painted = [0,0,0,0,0];
+	var diagUpRow2painted = [0,0,0,0,0,0];
+	var diagUpRow3painted = [0,0,0,0,0,0];
+	var diagUpRow4painted = [0,0,0,0,0];
+	var diagUpRow5painted = [0,0,0,0];
+
+	var diagDwnRow0painted = [0,0,0,0];
+	var diagDwnRow1painted = [0,0,0,0,0];
+	var diagDwnRow2painted = [0,0,0,0,0,0];
+	var diagDwnRow3painted = [0,0,0,0,0,0];
+	var diagDwnRow4painted = [0,0,0,0,0];
+	var diagDwnRow5painted = [0,0,0,0];
+
+	var playerName1 = "anoniempje1";
+	var playerName2 = "anoniempje2";
+	var turnPlayer1 = true;
+	var turnPlayer2 = false;
+	var currentPlayer = "unknown player";
+	var winnerFound = false;
+
+// start met rood; kleuren zijn: 0=noColor, 1=yellow, 2=red
+	var kleur = 1;
+	var coinColor; 
+	hoverColor = 'lightgrey';
+	var boolHoverCol0 = false;
+	var boolHoverCol1 = false;
+	var boolHoverCol2 = false;
+	var boolHoverCol3 = false;
+	var boolHoverCol4 = false;
+	var boolHoverCol5 = false;
+	var boolHoverCol6 = false;
+	
+
+
+	///var muntAppear;
+	
+
+	
+// HOVERING_IN_OUT_FUNCTIONS: 
+	function hoverCol0(kolom){ 
+
+		boolHoverCol0 = true;
+
+		if(document.getElementById("vakje00").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje00").style.opacity = "0.5";
+		} 
+		if(document.getElementById("vakje01").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje01").style.opacity = "0.5";
+		}
+		if(document.getElementById("vakje02").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje02").style.opacity = "0.5"
+		} 
+		if(document.getElementById("vakje03").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje03").style.opacity = "0.5"
+		}
+		if(document.getElementById("vakje04").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje04").style.opacity = "0.5"
+		}
+		if(document.getElementById("vakje05").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje05").style.opacity = "0.5"
+		} 
+		
+	 }
+	 function hoverCol1(){ 
+
+		boolHoverCol1 = true;
+
+		if(document.getElementById("vakje10").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje10").style.opacity = "0.5";
+		
+		} 
+		if(document.getElementById("vakje11").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje11").style.opacity = "0.5";
+		}
+		if(document.getElementById("vakje12").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje12").style.opacity = "0.5"
+		} 
+		if(document.getElementById("vakje13").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje13").style.opacity = "0.5"
+		}
+		if(document.getElementById("vakje14").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje14").style.opacity = "0.5"
+		}
+		if(document.getElementById("vakje15").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje15").style.opacity = "0.5"
+		} 
+	 } 
+	 function hoverCol2(){ 
+
+		boolHoverCol2 = true;
+
+		if(document.getElementById("vakje20").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje20").style.opacity = "0.5";
+		} 
+		if(document.getElementById("vakje21").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje21").style.opacity = "0.5";
+		}
+		if(document.getElementById("vakje22").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje22").style.opacity = "0.5"
+		} 
+		if(document.getElementById("vakje23").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje23").style.opacity = "0.5"
+		}
+		if(document.getElementById("vakje24").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje24").style.opacity = "0.5"
+		}
+		if(document.getElementById("vakje25").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje25").style.opacity = "0.5"
+		} 
+	 }
+	 function hoverCol3(){ 
+
+		boolHoverCol3 = true;
+
+		if(document.getElementById("vakje30").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje30").style.opacity = "0.5";
+		} 
+		if(document.getElementById("vakje31").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje31").style.opacity = "0.5";
+		}
+		if(document.getElementById("vakje32").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje32").style.opacity = "0.5"
+		} 
+		if(document.getElementById("vakje33").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje33").style.opacity = "0.5"
+		}
+		if(document.getElementById("vakje34").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje34").style.opacity = "0.5"
+		}
+		if(document.getElementById("vakje35").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje35").style.opacity = "0.5"
+		} 
+	 }
+	 function hoverCol4(){ 
+
+		boolHoverCol4 = true;
+
+		if(document.getElementById("vakje40").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje40").style.opacity = "0.5";
+		} 
+		if(document.getElementById("vakje41").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje41").style.opacity = "0.5";
+		}
+		if(document.getElementById("vakje42").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje42").style.opacity = "0.5"
+		} 
+		if(document.getElementById("vakje43").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje43").style.opacity = "0.5"
+		}
+		if(document.getElementById("vakje44").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje44").style.opacity = "0.5"
+		}
+		if(document.getElementById("vakje45").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje45").style.opacity = "0.5"
+		} 
+	 }
+	 function hoverCol5(){ 
+
+		boolHoverCol5 = true;
+
+		if(document.getElementById("vakje50").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje50").style.opacity = "0.5";
+		} 
+		if(document.getElementById("vakje51").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje51").style.opacity = "0.5";
+		}
+		if(document.getElementById("vakje52").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje52").style.opacity = "0.5"
+		} 
+		if(document.getElementById("vakje53").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje53").style.opacity = "0.5"
+		}
+		if(document.getElementById("vakje54").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje54").style.opacity = "0.5"
+		}
+		if(document.getElementById("vakje55").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje55").style.opacity = "0.5"
+		} 
+	 }
+	 function hoverCol6(){ 
+
+		boolHoverCol6 = true;
+
+		if(document.getElementById("vakje60").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje60").style.opacity = "0.5";
+		} 
+		if(document.getElementById("vakje61").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje61").style.opacity = "0.5";
+		}
+		if(document.getElementById("vakje62").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje62").style.opacity = "0.5"
+		} 
+		if(document.getElementById("vakje63").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje63").style.opacity = "0.5"
+		}
+		if(document.getElementById("vakje64").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje64").style.opacity = "0.5"
+		}
+		if(document.getElementById("vakje65").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje65").style.opacity = "0.5"
+		} 
+	 }
+
+	function outCol0(){ 
+		
+		boolHoverCol0 = false;
+
+		if(document.getElementById("vakje00").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje00").style.opacity = "1";
+		}
+		if(document.getElementById("vakje01").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje01").style.opacity = "1"
+		}
+		if(document.getElementById("vakje02").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje02").style.opacity = "1"
+		} 
+		if(document.getElementById("vakje03").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje03").style.opacity = "1"
+		} 
+		if(document.getElementById("vakje04").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje04").style.opacity = "1"
+		} 
+		if(document.getElementById("vakje05").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje05").style.opacity = "1"
+		} 
+	}
+	function outCol1(){ 
+	
+		boolHoverCol1 = false;
+
+		if(document.getElementById("vakje10").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje10").style.opacity = "1";
+		}
+		if(document.getElementById("vakje11").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje11").style.opacity = "1"
+		}
+		if(document.getElementById("vakje12").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje12").style.opacity = "1"
+		} 
+		if(document.getElementById("vakje13").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje13").style.opacity = "1"
+		} 
+		if(document.getElementById("vakje14").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje14").style.opacity = "1"
+		} 
+		if(document.getElementById("vakje15").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje15").style.opacity = "1"
+		} 
+	}
+	function outCol2(){ 
+
+		boolHoverCol2 = false;
+
+		if(document.getElementById("vakje20").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje20").style.opacity = "1";
+		}
+		if(document.getElementById("vakje21").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje21").style.opacity = "1"
+		}
+		if(document.getElementById("vakje22").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje22").style.opacity = "1"
+		} 
+		if(document.getElementById("vakje23").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje23").style.opacity = "1"
+		} 
+		if(document.getElementById("vakje24").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje24").style.opacity = "1"
+		} 
+		if(document.getElementById("vakje25").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje25").style.opacity = "1"
+		} 
+	}
+	function outCol3(){ 
+
+		boolHoverCol3 = false;
+
+		if(document.getElementById("vakje30").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje30").style.opacity = "1";
+		}
+		if(document.getElementById("vakje31").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje31").style.opacity = "1"
+		}
+		if(document.getElementById("vakje32").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje32").style.opacity = "1"
+		} 
+		if(document.getElementById("vakje33").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje33").style.opacity = "1"
+		} 
+		if(document.getElementById("vakje34").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje34").style.opacity = "1"
+		} 
+		if(document.getElementById("vakje35").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje35").style.opacity = "1"
+		} 
+	}
+	function outCol4(){ 
+
+		boolHoverCol4 = false;
+
+		if(document.getElementById("vakje40").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje40").style.opacity = "1";
+		}
+		if(document.getElementById("vakje41").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje41").style.opacity = "1"
+		}
+		if(document.getElementById("vakje42").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje42").style.opacity = "1"
+		} 
+		if(document.getElementById("vakje43").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje43").style.opacity = "1"
+		} 
+		if(document.getElementById("vakje44").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje44").style.opacity = "1"
+		} 
+		if(document.getElementById("vakje45").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje45").style.opacity = "1"
+		} 
+	}
+	function outCol5(){ 
+
+		boolHoverCol5 = false;
+
+		if(document.getElementById("vakje50").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje50").style.opacity = "1";
+		}
+		if(document.getElementById("vakje51").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje51").style.opacity = "1"
+		}
+		if(document.getElementById("vakje52").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje52").style.opacity = "1"
+		} 
+		if(document.getElementById("vakje53").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje53").style.opacity = "1"
+		} 
+		if(document.getElementById("vakje54").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje54").style.opacity = "1"
+		} 
+		if(document.getElementById("vakje55").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje55").style.opacity = "1"
+		} 
+	}
+	function outCol6(){ 
+
+		boolHoverCol6 = false;
+
+		if(document.getElementById("vakje60").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje60").style.opacity = "1";
+		}
+		if(document.getElementById("vakje61").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje61").style.opacity = "1"
+		}
+		if(document.getElementById("vakje62").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje62").style.opacity = "1"
+		} 
+		if(document.getElementById("vakje63").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje63").style.opacity = "1"
+		} 
+		if(document.getElementById("vakje64").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje64").style.opacity = "1"
+		} 
+		if(document.getElementById("vakje65").style.backgroundColor != 'red' || 'yellow'){
+		document.getElementById("vakje65").style.opacity = "1"
+		} 
+	}
+
+
+	//  function cursorSaysFull(){ 
+	//  	if(counterkolom[kolom] > 5){ 
+	//  		document.getElementById("vakje"+kolom +""+ counterkolom[kolom]).style.cursor = "not-allowed";
+	//  	}
+	//  }
+	//window.addEventListener('load', fallingCoin);  /// test autofall
+		function fallingCoin(){
+		var munt = document.getElementById('fallCoin');
+		
+		var speed = 1;
+		var positieY = 5;
+		
+
+		if(boolHoverCol0 == true){ 
+		munt.style.marginLeft = (document.getElementById("vakje00").getBoundingClientRect().left)-6 + 'px';
+		} else if (boolHoverCol1 == true){
+		munt.style.marginLeft = (document.getElementById("vakje10").getBoundingClientRect().left)-6 + 'px';
+		} else if (boolHoverCol2 == true){
+		munt.style.marginLeft = (document.getElementById("vakje20").getBoundingClientRect().left)-6 + 'px';
+		} else if (boolHoverCol3 == true){
+		munt.style.marginLeft = (document.getElementById("vakje30").getBoundingClientRect().left)-6 + 'px';
+		} else if (boolHoverCol4 == true){
+		munt.style.marginLeft = (document.getElementById("vakje40").getBoundingClientRect().left)-6 + 'px';
+		} else if (boolHoverCol5 == true){
+		munt.style.marginLeft = (document.getElementById("vakje50").getBoundingClientRect().left)-6 + 'px';
+		} else if (boolHoverCol6 == true){
+		munt.style.marginLeft = (document.getElementById("vakje60").getBoundingClientRect().left)-6 + 'px';
+		} 
+
+    function schuifVerder(){ 
+		
+		if(turnPlayer1 == true){
+			currentPlayer = playerName1;
+			munt.style.backgroundColor = 'yellow';
+		} else if (turnPlayer2 == true){ 
+			currentPlayer = playerName2;
+			munt.style.backgroundColor = 'red';
+		}
+		//// afstand relatief in de tabel : 
+		if(positieY < (document.getElementById("vakje00").getBoundingClientRect().top) - (document.getElementById("totalTable").getBoundingClientRect().top)){
+			positieY += speed;
+			munt.style.marginTop = positieY + 'px';
+			}
+   		 }
+    //  deze functie elke 20 miliseconden: , hoe hogerhet getal, hoe langzamer. 
+    	var varen = setInterval(schuifVerder, 2);
+	}
+
+	function latenvallen( kolom){
+		if(counterkolom[kolom] < 6){
+		if(kleur == 1){
+			coinColor = 'red';
+			kleur = 2;
+			turnPlayer2 = true;
+			turnPlayer1 = false;
+		}else{
+			coinColor = 'yellow';
+			kleur = 1;
+			turnPlayer1 = true;
+			turnPlayer2 = false; 
+		}
+
+		fallingCoin();
+
+		document.getElementById("vakje"+kolom +""+ counterkolom[kolom]).style.backgroundColor = coinColor;
+
+		//// checking for horizon 4-matches: //////////////////
+		if(kolom == 0){ 
+			var currentCol = yRow0painted;
+			yRow0painted[counterkolom[kolom]] = kleur;
+		} else if (kolom == 1){ 
+			var currentCol = yRow1painted;
+			yRow1painted[counterkolom[kolom]] = kleur;
+		} else if (kolom == 2){ 
+			var currentCol = yRow2painted;
+			yRow2painted[counterkolom[kolom]] = kleur;
+		} else if (kolom == 3){ 
+			var currentCol = yRow3painted;
+			yRow3painted[counterkolom[kolom]] = kleur;
+		} else if (kolom == 4){ 
+			var currentCol = yRow4painted;
+			yRow4painted[counterkolom[kolom]] = kleur;
+		} else if (kolom == 5){ 
+			var currentCol = yRow5painted;
+			yRow5painted[counterkolom[kolom]] = kleur;
+		} else if (kolom == 6){ 
+			var currentCol = yRow6painted;
+			yRow6painted[counterkolom[kolom]] = kleur;
+		}
+
+		if( (((kleur) == (currentCol[counterkolom[kolom]-1])) && ((kleur) == (currentCol[counterkolom[kolom]-2]))
+				&& ((kleur) == (currentCol[counterkolom[kolom]-3])))  || 
+				(((kleur) == (currentCol[counterkolom[kolom]+1])) && ((kleur) == (currentCol[counterkolom[kolom]+2]))
+				&& ((kleur) == (currentCol[counterkolom[kolom]+3])))  || 
+				(((kleur) == (currentCol[counterkolom[kolom]+1])) && ((kleur) == (currentCol[counterkolom[kolom]-1]))
+				&& ((kleur) == (currentCol[counterkolom[kolom]-2])))  || 
+				(((kleur) == (currentCol[counterkolom[kolom]+1])) && ((kleur) == (currentCol[counterkolom[kolom]+2]))
+				&& ((kleur) == (currentCol[counterkolom[kolom]-1])))
+				){
+				if (kleur == 2){ 
+					winnerFound = true;
+					
+				var duetYas = "  (  RED WINS! in kolom : " + kolom  + " met een horizontale match) "
+				} else if(kleur == 1){ 
+					winnerFound = true;
+					
+				var duetYas = " (  YELLOW WINS! in kolom : " + kolom  + " met een horizontale match) "
+				} 
+			} else
+			var duetYas =" no horizontal winner yet "
+
+		////diagonalen Up (linksOnder naar RechtsBoven) 4-matches checken: 
+		if(kolom == 0){ 
+			if(counterkolom[kolom] == 0){
+			var currentDiagUp = diagUpRow2painted;
+			diagUpRow2painted[0] = kleur;
+	
+				if( ((kleur) == (currentDiagUp[counterkolom[kolom]+1])) && ((kleur) == (currentDiagUp[counterkolom[kolom]+2])) 
+				&& ((kleur) == (currentDiagUp[counterkolom[kolom]+3])) 
+				){ 
+					winnerFound = true;
+					
+				//alert("vier op een rij  // werkt 2[0]" );
+		 	 	} 
+			} 
+			else if(counterkolom[kolom] == 1){
+			var currentDiagUp = diagUpRow1painted;
+			diagUpRow1painted[0] = kleur;
+
+				if( ((kleur) == (diagUpRow1painted[1])) && ((kleur) == (diagUpRow1painted[2])) 
+				&& ((kleur) == (diagUpRow1painted[3])) 
+				){ 
+					winnerFound = true;
+					
+				//alert("vier op een rij  a // werkt 1[0]" );
+		 	 	}
+			} 
+			else if(counterkolom[kolom] == 2){
+			var currentDiagUp = diagUpRow0painted;
+			diagUpRow0painted[0] = kleur;
+
+			if( ((kleur) == (diagUpRow0painted[1])) && ((kleur) == (diagUpRow0painted[2])) 
+				&& ((kleur) == (diagUpRow0painted[3])) 
+				){ 
+					winnerFound = true;
+				//alert("vier op een rij  a // werkt 0[0]" );
+		 	 	}
+			}
+			/// de linksBoven naar Rechtsonder- verticalen van kolom 0:
+			if(counterkolom[kolom] == 3 || counterkolom[kolom] == 4 || counterkolom[kolom] == 5){
+
+						if(counterkolom[kolom] ==3){
+						var currentDiagDwn = diagDwnRow0painted;
+						diagDwnRow0painted[0] = kleur;
+						}
+						if(counterkolom[kolom] ==4){
+						var currentDiagDwn = diagDwnRow1painted;
+						diagDwnRow1painted[0] = kleur;
+						}
+						if(counterkolom[kolom] ==5){
+						var currentDiagDwn = diagDwnRow2painted;
+						diagDwnRow2painted[0] = kleur;
+						}
+
+
+			if( ((kleur) == (currentDiagDwn[1])) && ((kleur) == (currentDiagDwn[2])) 
+				&& ((kleur) == (currentDiagDwn[3])) 
+				){ 
+					winnerFound = true;
+				//alert("vier op een rij DownRow0 0[0], 1[0], 2[0] correct" );
+		 	 	}
+			}	
+			
+		
+
+
+		} 
+		if(kolom == 1){ 
+			if(counterkolom[kolom] == 0){
+			var currentDiagUp = diagUpRow3painted;
+			diagUpRow3painted[0] = kleur;
+			
+
+			if( ((kleur) == (currentDiagUp[counterkolom[kolom]+1])) && ((kleur) == (currentDiagUp[counterkolom[kolom]+2])) 
+				&& ((kleur) == (currentDiagUp[counterkolom[kolom]+3])) 
+				){ 
+				winnerFound = true;
+				//alert("vier op een rij   // werkt 3[0] " );
+		 	 } 
+			} 
+			if(counterkolom[kolom] == 1){ // als in op hoogte 1 klikt
+			var currentDiagUp = diagUpRow2painted;
+			diagUpRow2painted[1] = kleur;
+		
+
+				if( ((kleur) == (currentDiagUp[counterkolom[kolom]-1])) && ((kleur) == (currentDiagUp[counterkolom[kolom]+1])) 
+					&& ((kleur) == (currentDiagUp[counterkolom[kolom]+2])) ||
+					((kleur) == (currentDiagUp[counterkolom[kolom]+1])) && ((kleur) == (currentDiagUp[counterkolom[kolom]+2])) 
+					&& ((kleur) == (currentDiagUp[counterkolom[kolom]+3]))
+					){ 
+				winnerFound = true;
+				//alert("vier op een rij  // werkt 2[1] " );
+		 	 } 
+
+
+			} 
+			if(counterkolom[kolom] == 2){
+			var currentDiagUp = diagUpRow1painted;
+			diagUpRow1painted[1] = kleur;
+			var currentDiagDwn = diagDwnRow0painted
+			diagDwnRow0painted[1] = kleur;
+
+			if( ((kleur) == (currentDiagUp[counterkolom[kolom]-1])) && ((kleur) == (currentDiagUp[counterkolom[kolom]+1])) 
+			&& ((kleur) == (currentDiagUp[counterkolom[kolom]+2])) ||
+			((kleur) == (currentDiagUp[counterkolom[kolom]+1])) && ((kleur) == (currentDiagUp[counterkolom[kolom]+2])) 
+			&& ((kleur) == (currentDiagUp[counterkolom[kolom]+3]))
+			){ 
+				winnerFound = true;
+				//alert("vier op een rij  // werkt 1[1] " );
+		 	 } 
+			  if( ((kleur) == (currentDiagDwn[0])) && ((kleur) == (currentDiagDwn[2])) 
+				&& ((kleur) == (currentDiagDwn[3])) 
+				){ 
+					winnerFound = true;
+				//alert("vier op een rij Down 0[1] NOG CHECKEN" );
+		 	 	}
+
+			} 
+			if(counterkolom[kolom] == 3){
+			var currentDiagUp = diagUpRow0painted;
+			diagUpRow0painted[1] = kleur;
+			var currentDiagDwn = diagDwnRow1painted
+			diagDwnRow1painted[1] = kleur;
+			
+				if( ((kleur) == diagUpRow0painted[0]) && ((kleur) == (diagUpRow0painted[2])) 
+					&& ((kleur) == (diagUpRow0painted[3]))
+					){ 
+					winnerFound = true;
+					//alert("vier op een rij  // werkt 0[1] " );
+		 	 	} 
+			  	if( ((kleur) == (currentDiagDwn[0])) && ((kleur) == (currentDiagDwn[2])) 
+					&& ((kleur) == (currentDiagDwn[3])) ||
+					((kleur) == (currentDiagDwn[2])) && ((kleur) == (currentDiagDwn[3])) 
+					&& ((kleur) == (currentDiagDwn[4]))
+					){ 
+					winnerFound = true;
+					//alert("vier op een rij Down 1[1]" );
+		 	 	}
+			} 
+			if(counterkolom[kolom] == 4){
+			var currentDiagDwn = diagDwnRow2painted
+			diagDwnRow2painted[1] = kleur;
+
+				if( ((kleur) == (currentDiagDwn[0])) && ((kleur) == (currentDiagDwn[2])) 
+					&& ((kleur) == (currentDiagDwn[3])) ||
+					((kleur) == (currentDiagDwn[2])) && ((kleur) == (currentDiagDwn[3])) 
+					&& ((kleur) == (currentDiagDwn[4]))
+					){ 
+					winnerFound = true;
+					//alert("vier op een rij Down 2[1]" );
+		 	 	}
+			}
+			if(counterkolom[kolom] == 5){
+			var currentDiagDwn = diagDwnRow2painted
+			diagDwnRow3painted[0] = kleur;
+
+				if( ((kleur) == (diagDwnRow3painted[1])) && ((kleur) == (diagDwnRow3painted[2])) 
+					&& ((kleur) == (diagDwnRow3painted[3]))
+					){ 
+					winnerFound = true;
+					//alert("vier op een rij Down 3[0]" );
+		 	 	}
+			}
+		}
+		if(kolom == 2){ 
+			if(counterkolom[kolom] == 0){
+			var currentDiagUp = diagUpRow4painted;
+			diagDwnRow4painted[0] = kleur;
+
+			if( ((kleur) == (currentDiagUp[counterkolom[kolom]+1])) && ((kleur) == (currentDiagUp[counterkolom[kolom]+2])) 
+			&& ((kleur) == (currentDiagUp[counterkolom[kolom]+3]))
+			){ 
+				winnerFound = true;
+				//alert("vier op een rij  // werkt 4[0] " );
+		 	 } 
+			} 
+			if(counterkolom[kolom] == 1){
+			var currentDiagUp = diagUpRow3painted;
+			diagUpRow3painted[1] = kleur;
+			var currentDiagDwn = diagDwnRow0painted
+			diagDwnRow0painted[2] = kleur;
+
+				if( ((kleur) == (currentDiagUp[counterkolom[kolom]-1])) && ((kleur) == (currentDiagUp[counterkolom[kolom]+1])) 
+					&& ((kleur) == (currentDiagUp[counterkolom[kolom]+2])) ||
+					((kleur) == (currentDiagUp[counterkolom[kolom]+1])) && ((kleur) == (currentDiagUp[counterkolom[kolom]+2])) 
+					&& ((kleur) == (currentDiagUp[counterkolom[kolom]+3]))
+				){ 
+				winnerFound = true;
+				//alert("vier op een rij  // werkt 3[1] " );
+		 	 } 
+
+			  if( ((kleur) == (currentDiagDwn[0])) && ((kleur) == (currentDiagDwn[1])) 
+					&& ((kleur) == (currentDiagDwn[3]))
+					){ 
+					winnerFound = true;
+					//alert("vier op een rij Down 0[2] NOG CHECKEN" );
+		 	 	}
+			} 
+			if(counterkolom[kolom] == 2){
+			var currentDiagUp = diagUpRow2painted;
+			diagUpRow2painted[2] = kleur;
+			var currentDiagDwn = diagDwnRow1painted
+			diagDwnRow1painted[2] = kleur;
+
+				if( ((kleur) == (currentDiagUp[counterkolom[kolom]-2])) && ((kleur) == (currentDiagUp[counterkolom[kolom]-1])) 
+					&& ((kleur) == (currentDiagUp[counterkolom[kolom]+1])) ||
+					((kleur) == (currentDiagUp[counterkolom[kolom]-1])) && ((kleur) == (currentDiagUp[counterkolom[kolom]+1])) 
+					&& ((kleur) == (currentDiagUp[counterkolom[kolom]+2])) ||
+					((kleur) == (currentDiagUp[counterkolom[kolom]+1])) && ((kleur) == (currentDiagUp[counterkolom[kolom]+2])) 
+					&& ((kleur) == (currentDiagUp[counterkolom[kolom]+3]))
+				){ 
+				winnerFound = true;
+				//alert("vier op een rij  // werkt 2[2] " );
+		 	 } 
+			  
+			  if( ((kleur) == (currentDiagDwn[0])) && ((kleur) == (currentDiagDwn[1])) 
+					&& ((kleur) == (currentDiagDwn[3])) ||
+					((kleur) == (currentDiagDwn[1])) && ((kleur) == (currentDiagDwn[3])) 
+					&& ((kleur) == (currentDiagDwn[4]))
+					){ 
+					winnerFound = true;
+					//alert("vier op een rij Down 1[2] " );
+		 	 	}
+			} 
+			if(counterkolom[kolom] == 3){
+			var currentDiagUp = diagUpRow1painted;
+			diagUpRow1painted[2] = kleur;
+			var currentDiagDwn = diagDwnRow2painted
+			diagDwnRow2painted[2] = kleur;
+
+			if( ((kleur) == (diagUpRow1painted[0])) && ((kleur) == (diagUpRow1painted[1])) 
+			&& ((kleur) == (diagUpRow1painted[3])) ||
+			((kleur) == (diagUpRow1painted[1])) && ((kleur) == (diagUpRow1painted[3])) 
+			&& ((kleur) == (diagUpRow1painted[4]))
+			){ 
+				winnerFound = true;
+				//alert("vier op een rij  // werkt 1[2] " );
+		 	 } 
+			  if( ((kleur) == (currentDiagDwn[0])) && ((kleur) == (currentDiagDwn[1])) 
+					&& ((kleur) == (currentDiagDwn[3])) ||
+					((kleur) == (currentDiagDwn[1])) && ((kleur) == (currentDiagDwn[3])) 
+					&& ((kleur) == (currentDiagDwn[4])) ||
+					((kleur) == (currentDiagDwn[3])) && ((kleur) == (currentDiagDwn[4])) 
+					&& ((kleur) == (currentDiagDwn[5]))
+					){ 
+					winnerFound = true;
+					//alert("vier op een rij Down 2[2]" );
+		 	 	}
+
+			} 
+			if(counterkolom[kolom] == 4){
+			var currentDiagUp = diagUpRow0painted;
+			diagUpRow0painted[2] = kleur;
+			var currentDiagDwn = diagDwnRow3painted
+			diagDwnRow3painted[1] = kleur;
+
+				if( ((kleur) == (diagUpRow0painted[0])) && ((kleur) == (diagUpRow0painted[1])) 
+					&& ((kleur) == (diagUpRow0painted[3])) 
+					){ 
+					winnerFound = true;
+					//alert("vier op een rij  // werkt 0[2] " );
+		 	 } 
+			  	if( ((kleur) == (currentDiagDwn[0])) && ((kleur) == (currentDiagDwn[2])) 
+					&& ((kleur) == (currentDiagDwn[3])) ||
+					((kleur) == (currentDiagDwn[2])) && ((kleur) == (currentDiagDwn[3])) 
+					&& ((kleur) == (currentDiagDwn[4])) 
+					){ 
+					winnerFound = true;
+					//alert("vier op een rij Down 3[1]" );
+		 	 	}
+			} 
+			if(counterkolom[kolom] == 5){
+			var currentDiagDwn = diagDwnRow4painted
+			diagDwnRow4painted[0] = kleur;
+
+			  	if( ((kleur) == (currentDiagDwn[1])) && ((kleur) == (currentDiagDwn[2])) 
+					&& ((kleur) == (currentDiagDwn[3])) 
+					){ 
+					winnerFound = true;
+					//alert("vier op een rij Down 4[0]" );
+		 	 	}
+			} 
+		}
+		if(kolom == 3){
+			if(counterkolom[kolom] == 0){
+			var currentDiagUp = diagUpRow5painted;
+			diagUpRow5painted[0] = kleur;
+			var currentDiagDwn = diagDwnRow0painted
+			diagDwnRow0painted[3] = kleur;
+			} 
+			if(counterkolom[kolom] == 1){
+			var currentDiagUp = diagUpRow4painted;
+			diagUpRow4painted[1] = kleur;
+			var currentDiagDwn = diagDwnRow1painted
+			diagDwnRow1painted[3] = kleur;
+			} 
+			if(counterkolom[kolom] == 2){
+			var currentDiagUp = diagUpRow3painted;
+			diagUpRow3painted[2] = kleur;
+			var currentDiagDwn = diagDwnRow2painted
+			diagDwnRow2painted[3] = kleur;
+			} 
+			if(counterkolom[kolom] == 3){
+			var currentDiagUp = diagUpRow2painted;
+			diagUpRow2painted[3] = kleur;
+			var currentDiagDwn = diagDwnRow3painted
+			diagDwnRow3painted[2] = kleur;
+			} 
+			if(counterkolom[kolom] == 4){
+			var currentDiagUp = diagUpRow1painted;
+			diagUpRow1painted[3] = kleur;
+			var currentDiagDwn = diagDwnRow4painted
+			diagDwnRow4painted[1] = kleur;
+			} 
+			if(counterkolom[kolom] == 5){
+			var currentDiagUp = diagUpRow0painted;
+			diagUpRow0painted[3] = kleur;
+			var currentDiagDwn = diagDwnRow5painted
+			diagDwnRow5painted[0] = kleur;
+			} 
+			
+			if( (((kleur) == (currentDiagUp[kolom-1])) && ((kleur) == (currentDiagUp[kolom-2])) 
+				&& ((kleur) == (currentDiagUp[kolom-3]))) || 
+				(((kleur) == (currentDiagUp[kolom+1])) && ((kleur) == (currentDiagUp[kolom-1])) 
+				&& ((kleur) == (currentDiagUp[kolom-2]))) || 
+				(((kleur) == (currentDiagUp[kolom+2])) && ((kleur) == (currentDiagUp[kolom+1])) 
+				&& ((kleur) == (currentDiagUp[kolom-1]))) || 
+				(((kleur) == (currentDiagUp[kolom+3])) && ((kleur) == (currentDiagUp[kolom+2])) 
+				&& ((kleur) == (currentDiagUp[kolom+1])))
+				){ 
+					winnerFound = true;
+					//alert("vier op een rij  a // werkt overall voor kolom 3" );
+		 	 	}
+			
+			if( (((kleur) == (currentDiagDwn[kolom-1])) && ((kleur) == (currentDiagDwn[kolom-2])) 
+				&& ((kleur) == (currentDiagDwn[kolom-3]))) || 
+				(((kleur) == (currentDiagDwn[kolom+1])) && ((kleur) == (currentDiagDwn[kolom-1])) 
+				&& ((kleur) == (currentDiagDwn[kolom-2]))) || 
+				(((kleur) == (currentDiagDwn[kolom+2])) && ((kleur) == (currentDiagDwn[kolom+1])) 
+				&& ((kleur) == (currentDiagDwn[kolom-1]))) || 
+				(((kleur) == (currentDiagDwn[kolom+3])) && ((kleur) == (currentDiagDwn[kolom+2])) 
+				&& ((kleur) == (currentDiagDwn[kolom+1])))
+				){ 
+					winnerFound = true;
+					//alert("vier op een rij  a // voor hele kolom 3 down" );
+		 	 	}
+				
+		}  
+		if(kolom == 4){
+
+			if(counterkolom[kolom] == 0){
+			var currentDiagDwn = diagDwnRow1painted
+			diagDwnRow1painted[4] = kleur;
+				if( ((kleur) == (currentDiagDwn[1])) && ((kleur) == (currentDiagDwn[2])) 
+					&& ((kleur) == (currentDiagDwn[3])) 
+					){ 
+					winnerFound = true;
+					//alert("vier op een rij DownRow 1[4] werkt" );
+		 	 		}
+			}
+
+			if(counterkolom[kolom] == 1){
+			var currentDiagUp = diagUpRow5painted;
+			diagUpRow5painted[1] = kleur;
+			var currentDiagDwn = diagDwnRow2painted
+			diagDwnRow2painted[4] = kleur;
+
+				if( (kleur == diagUpRow5painted[0]) && (kleur == diagUpRow5painted[2]) 
+					&& (kleur == diagUpRow5painted[3])
+					){ 
+					winnerFound = true;
+					//alert("vier op een rij werk 5[1]" );
+		 	 		}
+
+				if( ((kleur) == (currentDiagDwn[1])) && ((kleur) == (currentDiagDwn[2])) 
+					&& ((kleur) == (currentDiagDwn[3])) ||
+					((kleur) == (currentDiagDwn[2])) && ((kleur) == (currentDiagDwn[3])) 
+					&& ((kleur) == (currentDiagDwn[5]))
+					){ 
+					winnerFound = true;
+					//alert("vier op een rij DownRow 2[4]" );
+		 	 		}
+			} 
+			else if(counterkolom[kolom] == 2){
+			var currentDiagUp = diagUpRow4painted;
+			diagUpRow4painted[2] = kleur;
+			var currentDiagDwn = diagDwnRow3painted
+			diagDwnRow3painted[3] = kleur;
+
+				if( (kleur == diagUpRow4painted[0]) && (kleur == diagUpRow4painted[1]) 
+					&& (kleur == diagUpRow4painted[3]) ||
+					(kleur == diagUpRow4painted[1]) && (kleur == diagUpRow4painted[3]) 
+					&& (kleur == diagUpRow4painted[4]) 
+					){ 
+					winnerFound = true;
+					//alert("vier op een rij werk 4[2]" );
+		 	 	}
+				if( ((kleur) == (currentDiagDwn[0])) && ((kleur) == (currentDiagDwn[1])) 
+					&& ((kleur) == (currentDiagDwn[2])) ||
+					((kleur) == (currentDiagDwn[1])) && ((kleur) == (currentDiagDwn[2])) 
+					&& ((kleur) == (currentDiagDwn[4])) ||
+					((kleur) == (currentDiagDwn[2])) && ((kleur) == (currentDiagDwn[4])) 
+					&& ((kleur) == (currentDiagDwn[5]))
+					){ 
+					winnerFound = true;
+					//alert("vier op een rij DownRow 3[3]" );
+		 	 	}
+
+			} 
+			else if(counterkolom[kolom] == 3){
+			var currentDiagUp = diagUpRow3painted;
+			diagUpRow3painted[3] = kleur;
+			var currentDiagDwn = diagDwnRow4painted
+			diagDwnRow4painted[2] = kleur;
+
+				if( (kleur == diagUpRow3painted[0]) && (kleur == diagUpRow3painted[1]) 
+					&& (kleur == diagUpRow3painted[2]) ||
+					(kleur == diagUpRow3painted[1]) && (kleur == diagUpRow3painted[2]) 
+					&& (kleur == diagUpRow3painted[4]) ||
+					(kleur == diagUpRow3painted[2]) && (kleur == diagUpRow3painted[4]) 
+					&& (kleur == diagUpRow3painted[5]) 
+					){ 
+					winnerFound = true;
+					//alert("vier op een rij werk 3[3]" );
+		 	 	}
+				if( ((kleur) == (currentDiagDwn[0])) && ((kleur) == (currentDiagDwn[1])) 
+					&& ((kleur) == (currentDiagDwn[3])) ||
+					((kleur) == (currentDiagDwn[1])) && ((kleur) == (currentDiagDwn[3])) 
+					&& ((kleur) == (currentDiagDwn[4])) 
+					){ 
+					winnerFound = true;
+					//alert("vier op een rij DownRow 4[2] NOG CHECKEN" );
+		 	 	}
+
+			} 
+			else if(counterkolom[kolom] == 4){
+			var currentDiagUp = diagUpRow2painted;
+			diagUpRow2painted[4] = kleur;
+			var currentDiagDwn = diagDwnRow5painted
+			diagDwnRow5painted[1] = kleur;
+
+				if( (kleur == diagUpRow2painted[1]) && (kleur == diagUpRow2painted[2]) 
+					&& (kleur == diagUpRow2painted[3]) ||
+					(kleur == diagUpRow2painted[2]) && (kleur == diagUpRow2painted[3]) 
+					&& (kleur == diagUpRow2painted[5]) 
+					){ 
+					winnerFound = true;
+					//alert("vier op een rij werk 2[4]" );
+		 	 	}
+				if( ((kleur) == (currentDiagDwn[0])) && ((kleur) == (currentDiagDwn[2])) 
+					&& ((kleur) == (currentDiagDwn[3]))
+					){ 
+					winnerFound = true;
+					//alert("vier op een rij DownRow 5[1] NOG CHECKEN" );
+		 	 	}
+			} 
+			else if(counterkolom[kolom] == 5){
+			var currentDiagUp = diagUpRow1painted;
+			diagUpRow1painted[4] = kleur;
+
+			if( (kleur == diagUpRow1painted[1]) && (kleur == diagUpRow1painted[2]) 
+				&& (kleur == diagUpRow1painted[3]) 
+				){ 
+					winnerFound = true;
+				//alert("vier op een rij werk 1[4]" );
+		 	 	}
+			} 
+	
+		}  
+		if(kolom == 5){
+
+			if(counterkolom[kolom] == 0){
+			var currentDiagDwn = diagDwnRow2painted
+			diagDwnRow2painted[5] = kleur;
+
+				if( ((kleur) == (currentDiagDwn[2])) && ((kleur) == (currentDiagDwn[3])) 
+					&& ((kleur) == (currentDiagDwn[4]))
+					){ 
+					winnerFound = true;
+					//alert("vier op een rij DownRow 2[5] werkt" );
+		 	 	}
+			}
+			if(counterkolom[kolom] == 1){
+			var currentDiagDwn = diagDwnRow3painted
+			diagDwnRow3painted[4] = kleur;
+
+				if( ((kleur) == (currentDiagDwn[2])) && ((kleur) == (currentDiagDwn[3])) 
+					&& ((kleur) == (currentDiagDwn[5])) ||
+					((kleur) == (currentDiagDwn[1])) && ((kleur) == (currentDiagDwn[2])) 
+					&& ((kleur) == (currentDiagDwn[3])) 
+					){ 
+					winnerFound = true;
+					//alert("vier op een rij DownRow 3[4]" );
+		 	 	}
+			}
+			if(counterkolom[kolom] == 2){
+			var currentDiagUp = diagUpRow5painted;
+			diagUpRow5painted[2] = kleur;
+			var currentDiagDwn = diagDwnRow4painted
+			diagDwnRow4painted[3] = kleur;
+
+				if( (kleur == diagUpRow5painted[0]) && (kleur == diagUpRow5painted[1]) 
+					&& (kleur == diagUpRow5painted[3]) 
+					){ 
+					winnerFound = true;
+					//alert("vier op een rij werk 5[2]" );
+		 	 	}
+				if( ((kleur) == (currentDiagDwn[0])) && ((kleur) == (currentDiagDwn[1])) 
+					&& ((kleur) == (currentDiagDwn[2])) ||
+					((kleur) == (currentDiagDwn[1])) && ((kleur) == (currentDiagDwn[3])) 
+					&& ((kleur) == (currentDiagDwn[4]))
+					){ 
+					winnerFound = true;
+					//alert("vier op een rij DownRow 4[3] NOG CHECKEN" );
+		 	 	}
+			} 
+			if(counterkolom[kolom] == 3){
+			var currentDiagUp = diagUpRow4painted;
+			diagUpRow4painted[3] = kleur;
+			var currentDiagDwn = diagDwnRow5painted
+			diagDwnRow5painted[2] = kleur;
+
+				if( (kleur == diagUpRow4painted[0]) && (kleur == diagUpRow4painted[1]) 
+					&& (kleur == diagUpRow4painted[2]) ||
+					(kleur == diagUpRow4painted[1]) && (kleur == diagUpRow4painted[2]) 
+					&& (kleur == diagUpRow4painted[4]) 
+					){ 
+					winnerFound = true;
+					//alert("vier op een rij werk 4[3]" );
+		 	 	}
+				if( ((kleur) == (currentDiagDwn[0])) && ((kleur) == (currentDiagDwn[1])) 
+					&& ((kleur) == (currentDiagDwn[3]))
+					){ 
+					winnerFound = true;
+					//alert("vier op een rij DownRow 5[2] NOG CHECKEN" );
+		 	 	}
+			} 
+			if(counterkolom[kolom] == 4){
+			var currentDiagUp = diagUpRow3painted;
+			diagUpRow3painted[4] = kleur;
+
+			if( (kleur == diagUpRow3painted[1]) && (kleur == diagUpRow3painted[2]) 
+				&& (kleur == diagUpRow3painted[3]) ||
+				(kleur == diagUpRow3painted[2]) && (kleur == diagUpRow3painted[3]) 
+				&& (kleur == diagUpRow3painted[5]) 
+				){ 
+					winnerFound = true;
+				//alert("vier op een rij werk 3[4]" );
+		 	 	}
+			} 
+			if(counterkolom[kolom] == 5){
+			var currentDiagUp = diagUpRow2painted;
+			diagUpRow2painted[5] = kleur;
+
+			if( (kleur == diagUpRow2painted[2]) && (kleur == diagUpRow2painted[3]) 
+				&& (kleur == diagUpRow2painted[4]) 
+				){ 
+					winnerFound = true;
+				//alert("vier op een rij werk 2[5]" );
+		 	 	}
+			} 
+		}  
+		if(kolom == 6){
+			if(counterkolom[kolom] > 2){
+				if(counterkolom[kolom] == 3){
+				var currentDiagUp = diagUpRow5painted;
+				diagUpRow5painted[3] = kleur;
+				} 
+				if(counterkolom[kolom] == 4){
+				var currentDiagUp = diagUpRow4painted;
+				diagUpRow4painted[4] = kleur;
+				} 
+				if(counterkolom[kolom] == 5){
+				var currentDiagUp = diagUpRow3painted;
+				diagUpRow3painted[5] = kleur;
+				} 
+
+				if( (kleur == currentDiagUp[counterkolom[kolom]-1]) && (kleur ==  currentDiagUp[counterkolom[kolom]-2]) 
+					&& (kleur ==  currentDiagUp[counterkolom[kolom]-3]) 
+					){ 
+						winnerFound = true;
+					//alert("vier op een rij werkt voor heel kolom 6" );
+		 	 	}
+			}
+			if(counterkolom[kolom] < 3){
+				if(counterkolom[kolom] == 0){
+				var currentDiagDwn = diagDwnRow3painted
+				diagDwnRow3painted[5] = kleur;
+
+					if( ((kleur) == (currentDiagDwn[4])) && ((kleur) == (currentDiagDwn[3])) 
+						&& ((kleur) == (currentDiagDwn[2]))
+						){ 
+						winnerFound = true;
+						//alert("vier op een rij DownRow 3[5] werkt" );
+		 	 	}
+				} 
+				if(counterkolom[kolom] == 1){
+				var currentDiagDwn = diagDwnRow4painted
+				diagDwnRow4painted[4] = kleur;
+					if( ((kleur) == (currentDiagDwn[3])) && ((kleur) == (currentDiagDwn[2])) 
+						&& ((kleur) == (currentDiagDwn[1]))
+						){ 
+						winnerFound = true;
+						//alert("vier op een rij DownRow 4[4] werkt" );
+		 	 	}
+				} 
+				if(counterkolom[kolom] == 2){
+				var currentDiagDwn = diagDwnRow5painted
+				diagDwnRow5painted[3] = kleur;
+				if( ((kleur) == (currentDiagDwn[2])) && ((kleur) == (currentDiagDwn[1])) 
+						&& ((kleur) == (currentDiagDwn[0]))
+						){ 
+						winnerFound = true;
+						//alert("vier op een rij DownRow 5[3] werkt" );
+				} 
+				} 
+					
+				}
+		}  
+
+		
+		
+	
+
+		//// checking for verticall 4-matches: //////////////////
+			if(counterkolom[kolom] == 0){
+			var currentRow = xRow0painted;
+			xRow0painted[kolom] = kleur;
+		} 	else if(counterkolom[kolom] == 1){
+			var currentRow = xRow1painted;
+			xRow1painted[kolom] = kleur;
+		}	 else if(counterkolom[kolom] == 2){
+			var currentRow = xRow2painted;
+			xRow2painted[kolom] = kleur;
+		}	else if(counterkolom[kolom] == 3){
+			var currentRow = xRow3painted;
+			xRow3painted[kolom] = kleur;
+		}	else if(counterkolom[kolom] == 4){
+			var currentRow = xRow4painted;
+			xRow4painted[kolom] = kleur;
+		}	else if(counterkolom[kolom] == 5){
+			var currentRow = xRow5painted;
+			xRow5painted[kolom] = kleur;
+		}	
+		
+			
+
+			if( (((kleur) == (currentRow[kolom-1])) && ((kleur) == (currentRow[kolom-2]))
+				&& ((kleur) == (currentRow[kolom-3])))  || 
+				(((kleur) == (currentRow[kolom+1])) && ((kleur) == (currentRow[kolom+2]))
+				&& ((kleur) == (currentRow[kolom+3])))  || 
+				(((kleur) == (currentRow[kolom-1])) && ((kleur) == (currentRow[kolom+1]))
+				&& ((kleur) == (currentRow[kolom+2])))  || 
+				(((kleur) == (currentRow[kolom-2])) && ((kleur) == (currentRow[kolom-1]))
+				&& ((kleur) == (currentRow[kolom+1])))
+				){
+					if (kleur == 2){ 
+					winnerFound = true;
+					} else if(kleur == 1){ 
+					winnerfound = true;
+				} 
+				}
+
+		counterkolom[kolom]++;
+		whosTurn();
+		
+		} else{
+			 alert("geen jenga; stapelen boven speelveld verboden!");	 
+		} 
+		
+	}
+	
+	function whosTurn(){ 
+		
+		if(winnerFound == false){ 
+				if(turnPlayer1 == true){ 
+					document.getElementById("TurnString").innerHTML = playerName1 + " 's turn";
+					}else if(turnPlayer2 == true){ 
+					document.getElementById("TurnString").innerHTML = playerName2 + " 's turn";
+					}
+		}else if (winnerFound ==true){ 
+			winnerHandler();
+		}
+
+	}
+
+	function winnerHandler(){ 
+		alert(" HOERAHOERAHOERA THERE IS A WINNER, it is : " + currentPlayer);
+		restart();
+
+	}
+
+	function restart(){
+		winnerFound = false;
+		sayWelcome();
+	
+	}
+	function sayWelcome(){ 
+		playerName1 = document.getElementById("playerNameInput1").value;
+		playerName2 = document.getElementById("playerNameInput2").value;
+		alert("welcome, : " + playerName1 + " en " + playerName2);
+	}
+
+	var startPlayer = currentPlayer;
+
+</script>
+</head>
+<body>
+
+
+</body>
+
+<h1>WELCOME, PLEASE FILL IN YOUR NAMES! </h1>
+    <div>Name player 1: </div>
+    <input type = text value = anoniempje1 id="playerNameInput1">
+
+	<br>
+    <br>
+    <div> Name player 2: </div>
+	<input type = text value = anoniempje2 id="playerNameInput2">
+
+
+	<hr><hr><hr>
+
+	<input type="button" onclick=restart() value= "confirm names (later also: newGame)">
+	<br><br><br>
+	<p id= "TurnString"> Player 1 will open the game; have fun! </p>
+	<br>
+	<table id=totalTable >
+		<!-- coordinaten beginnen linksonder met tellen --> 
+		
+	
+		<tr  >
+			<div class="fallCoin" id="fallCoin">  </div>
+			<td id=vakje05 onmouseover="hoverCol0()" onmouseout="outCol0()" onclick=latenvallen(0)></td>
+			<td id=vakje15 onmouseover="hoverCol1()" onmouseout="outCol1()" onclick=latenvallen(1)></td>
+			<td id=vakje25 onmouseover="hoverCol2()" onmouseout="outCol2()" onclick=latenvallen(2)></td>
+			<td id=vakje35 onmouseover="hoverCol3()" onmouseout="outCol3()" onclick=latenvallen(3)></td>
+			<td id=vakje45 onmouseover="hoverCol4()" onmouseout="outCol4()" onclick=latenvallen(4)></td>
+			<td id=vakje55 onmouseover="hoverCol5()" onmouseout="outCol5()" onclick=latenvallen(5)></td>
+			<td id=vakje65 onmouseover="hoverCol6()" onmouseout="outCol6()" onclick=latenvallen(6)></td>
+		</tr>
+		<tr>
+			<td id=vakje04 onmouseover="hoverCol0()" onmouseout="outCol0()" onclick=latenvallen(0)></td>
+			<td id=vakje14 onmouseover="hoverCol1()" onmouseout="outCol1()" onclick=latenvallen(1)></td>
+			<td id=vakje24 onmouseover="hoverCol2()" onmouseout="outCol2()" onclick=latenvallen(2)></td>
+			<td id=vakje34 onmouseover="hoverCol3()" onmouseout="outCol3()" onclick=latenvallen(3)></td>
+			<td id=vakje44 onmouseover="hoverCol4()" onmouseout="outCol4()" onclick=latenvallen(4)></td>
+			<td id=vakje54 onmouseover="hoverCol5()" onmouseout="outCol5()" onclick=latenvallen(5)></td>
+			<td id=vakje64 onmouseover="hoverCol6()" onmouseout="outCol6()" onclick=latenvallen(6)></td>
+		</tr>
+		<tr>
+			<td id=vakje03 onmouseover="hoverCol0()" onmouseout="outCol0()" onclick=latenvallen(0)></td>
+			<td id=vakje13 onmouseover="hoverCol1()" onmouseout="outCol1()" onclick=latenvallen(1)></td>
+			<td id=vakje23 onmouseover="hoverCol2()" onmouseout="outCol2()" onclick=latenvallen(2)></td>
+			<td id=vakje33 onmouseover="hoverCol3()" onmouseout="outCol3()" onclick=latenvallen(3)></td>
+			<td id=vakje43 onmouseover="hoverCol4()" onmouseout="outCol4()" onclick=latenvallen(4)></td>
+			<td id=vakje53 onmouseover="hoverCol5()" onmouseout="outCol5()" onclick=latenvallen(5)></td>
+			<td id=vakje63 onmouseover="hoverCol6()" onmouseout="outCol6()" onclick=latenvallen(6)></td>
+		</tr>
+		<tr>
+			<td id=vakje02 onmouseover="hoverCol0()" onmouseout="outCol0()" onclick=latenvallen(0)></td>
+			<td id=vakje12 onmouseover="hoverCol1()" onmouseout="outCol1()" onclick=latenvallen(1)></td>
+			<td id=vakje22 onmouseover="hoverCol2()" onmouseout="outCol2()" onclick=latenvallen(2)></td>
+			<td id=vakje32 onmouseover="hoverCol3()" onmouseout="outCol3()" onclick=latenvallen(3)></td>
+			<td id=vakje42 onmouseover="hoverCol4()" onmouseout="outCol4()" onclick=latenvallen(4)></td>
+			<td id=vakje52 onmouseover="hoverCol5()" onmouseout="outCol5()" onclick=latenvallen(5)></td>
+			<td id=vakje62 onmouseover="hoverCol6()" onmouseout="outCol6()" onclick=latenvallen(6)></td>
+		</tr>
+		<tr>
+			<td id=vakje01 onmouseover="hoverCol0()" onmouseout="outCol0()" onclick=latenvallen(0)></td>
+			<td id=vakje11 onmouseover="hoverCol1()" onmouseout="outCol1()" onclick=latenvallen(1)></td>
+			<td id=vakje21 onmouseover="hoverCol2()" onmouseout="outCol2()" onclick=latenvallen(2)></td>
+			<td id=vakje31 onmouseover="hoverCol3()" onmouseout="outCol3()" onclick=latenvallen(3)></td>
+			<td id=vakje41 onmouseover="hoverCol4()" onmouseout="outCol4()" onclick=latenvallen(4)></td>
+			<td id=vakje51 onmouseover="hoverCol5()" onmouseout="outCol5()" onclick=latenvallen(5)></td>
+			<td id=vakje61 onmouseover="hoverCol6()" onmouseout="outCol6()" onclick=latenvallen(6)></td>
+		</tr>
+		<tr>
+			<td id=vakje00 onmouseover="hoverCol0()" onmouseout="outCol0()" onclick=latenvallen(0)></td>
+			<td id=vakje10 onmouseover="hoverCol1()" onmouseout="outCol1()" onclick=latenvallen(1)></td>
+			<td id=vakje20 onmouseover="hoverCol2()" onmouseout="outCol2()" onclick=latenvallen(2)></td>
+			<td id=vakje30 onmouseover="hoverCol3()" onmouseout="outCol3()" onclick=latenvallen(3)></td>
+			<td id=vakje40 onmouseover="hoverCol4()" onmouseout="outCol4()" onclick=latenvallen(4)></td>
+			<td id=vakje50 onmouseover="hoverCol5()" onmouseout="outCol5()" onclick=latenvallen(5)></td>
+			<td id=vakje60 onmouseover="hoverCol6()" onmouseout="outCol6()" onclick=latenvallen(6)></td>
+		</tr>
+
+	</table>
+
+</html>
+
+
+<!-- /////////// kladblok: 
+
+
+// 		<td id=vakje + yRows[0] + xRows[5]  onclick=latenvallen(0)>05</td>
+// 		<td id=vakje + yRows[1] + xRows[5]  onclick=latenvallen(1)>15</td>
+// 		<td id=vakje + yRows[2] + xRows[5]  onclick=latenvallen(2)>25</td>
+// 		<td id=vakje + yRows[3] + xRows[5]  onclick=latenvallen(3)>35</td>
+// 		<td id=vakje + yRows[4] + xRows[5]  onclick=latenvallen(4)>45</td>
+// 		<td id=vakje + yRows[5] + xRows[5]  onclick=latenvallen(5)>55</td>
+// 		<td id=vakje + yRows[6] + xRows[5]  onclick=latenvallen(6)>65</td> -->
+
+<!-- //var yourName = document.getElementById("mijntekst").value;
+// let newWin = window.open("startScherm.html");
+// newWin.document.write(newWin); -->
+
+
