@@ -7,27 +7,30 @@ public class Opdracht3 {
 		boolean doorcijferen = true;
 		
 		while(doorcijferen) { 
-			vraagOmCijfer();	
+			
+			//vraagOmCijfer();	
 			int cijfer = vraagOmCijfer();
 
+		      	if (cijfer == 0) { 
+		      		doorcijferen = false;
+		      	}
 
-		       if(cijfer > 6) {
-		    	  System.out.println("Dit cijfer is " + (cijfer-6) + " cijfers hoger");
-		       } 
-		       else if(cijfer == 6) { 
-		 	    	  System.out.println("Dit cijfer is gelijk aan 6");
-		 	       }
-		       else if(cijfer < 6) { 
-		 	    	  System.out.println("Dit cijer is " + (6-cijfer) + " cijfers lager");
-		 	       }
-		       else if (cijfer == 0) { 
-		    	   doorcijferen = false;
-		       }
+		      	else if(cijfer > 6) {
+		      		System.out.println("Dit cijfer is " + (cijfer-6) + " cijfers hoger");
+		      	} 
+		      	else if(cijfer == 6) { 
+		    	   	System.out.println("Dit cijfer is gelijk aan 6");
+		      	}
+		      	else if(cijfer < 6 ) { 
+		 	    	System.out.println("Dit cijer is " + (6-cijfer) + " cijfers lager");
+		      	}
+		
 		}
 		
 		if(!doorcijferen) { 
 			stopit();
-		}
+		} 
+		
 
 		
 	}
