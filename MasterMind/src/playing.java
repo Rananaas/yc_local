@@ -22,8 +22,8 @@ public class playing {
 
 		
 		System.out.println("PLAYER 2's turn, take a guess! ...  GuessesLeft = " + guessesLeft);
-		int whitePins = 0;
-		int blackPins = 0;
+		//int whitePins = 0;
+		//int blackPins = 0;
 		Scanner guessScanner = new Scanner(System.in);
 		String guess = guessScanner.nextLine();
 		char[] currentGuessArray = guess.toCharArray();
@@ -51,19 +51,28 @@ public class playing {
 		
 		for(int i = 0; i < currentGuessArray.length; i++) { 
 
+			
+						//CHECKING FOR BLACKPINS 
+								if(currentGuessArray[i] == codeToGuessArray[i]) { 
+											//System.out.println("black match found at place:  "+ i + " 
+											//it is colorNumber: " + codeToGuessArray[i]);
+										if(guessResultArray[i] != 'B') {
+												//blackPins ++;
+												guessResultArray[i] = 'B';
+										} 
+
+
+								}
+								
 						//CHEKCING FOR WHITEPINS
 						if (currentGuessArray[i] != codeToGuessArray[i]) {
 								for(int h = 0; h < codeToGuessArray.length;h++) {
 									
 										if (Arrays.asList(currentGuessArray[i]).contains(codeToGuessArray[h])) { 
-
-											//System.out.println("WHITE PIN FOUND AT PLACE " + h +  " it is 
-											///colorNumber: " + codeToGuessArray[h]);
-					
 					
 											if(guessResultArray[h] != 'W' && guessResultArray[h] != 'B') { 
 													guessResultArray[h] = 'W';
-													whitePins++;
+													//whitePins++;
 													}
 
 
@@ -72,23 +81,17 @@ public class playing {
 								}
 
 						}
-						//CHECKING FOR BLACKPINS 
-						if(currentGuessArray[i] == codeToGuessArray[i]) { 
-							//System.out.println("black match found at place:  "+ i + " 
-							//it is colorNumber: " + codeToGuessArray[i]);
-										if(guessResultArray[i] != 'B') {
-											blackPins ++;
-											guessResultArray[i] = 'B';
-										} 
-
-						}
+						
 
 		}
 	
 		
-		System.out.println("Amount of whitePins: " + whitePins);
-		System.out.println("Amount of blackPins: " + blackPins);
-		System.out.println(Arrays.toString(guessResultArray));
+		//System.out.println("Amount of whitePins: " + whitePins);
+		//System.out.println("Amount of blackPins: " + blackPins);
+		System.out.println("UNSORTED: " + Arrays.toString(guessResultArray));
+		Arrays.sort(guessResultArray);
+		
+		System.out.println("SORTED: "+ Arrays.toString(guessResultArray));
 		// guessAttempts eraf, no left? No more guessing! 
 		guessesLeft --;
 		if(guessesLeft == 0) { 
