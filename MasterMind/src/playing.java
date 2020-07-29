@@ -50,51 +50,40 @@ public class playing {
 			}
 		
 		for(int i = 0; i < currentGuessArray.length; i++) { 
-			
-			//CHECKING FOR BLACKPINS 
-			if(currentGuessArray[i] == codeToGuessArray[i]) { 
-				//System.out.println("black match found at place:  "+ i + " it is colorNumber: " + codeToGuessArray[i]);
-				if(guessResultArray[i] != 'B') {
-				blackPins ++;
-				guessResultArray[i] = 'B';
-				} 
-//				else if(guessResultArray[i] == 'W') { 
-//					whitePins--;
-//					blackPins++;
-//					guessResultArray[i] = 'B';
-//					}
-//				else if(guessResultArray[i] == 'B') { 
-//					blackPins --;
-//					
-//				}
-				//System.out.println(Arrays.toString(guessResultArray));
-			}
-			//CHEKCING FOR WHITEPINS
-			if (currentGuessArray[i] != codeToGuessArray[i]) {
-				//System.out.println("NO PERFECT MATCHES, checking for whites now");
-				
-				for(int h = 0; h < codeToGuessArray.length;h++) {
-					if (Arrays.asList(codeToGuessArray[i]).contains(guessResultArray[h])) { 
-			//	if (Arrays.asList(currentGuessArray[i]).contains(codeToGuessArray[h])) { // BOVEN IS NIEUWE
 
-					//System.out.println("WHITE PIN FOUND AT PLACE " + h +  " it is colorNumber: " + codeToGuessArray[h]);
+						//CHEKCING FOR WHITEPINS
+						if (currentGuessArray[i] != codeToGuessArray[i]) {
+								for(int h = 0; h < codeToGuessArray.length;h++) {
+									
+										if (Arrays.asList(currentGuessArray[i]).contains(codeToGuessArray[h])) { 
+
+											//System.out.println("WHITE PIN FOUND AT PLACE " + h +  " it is 
+											///colorNumber: " + codeToGuessArray[h]);
 					
 					
-					if(guessResultArray[h] != 'W' && guessResultArray[h] != 'B') { 
-						guessResultArray[h] = 'W';
-						whitePins++;
-					}
-//					if(guessResultArray[h] == 'B' ) { 
-//						whitePins--;
-//					}
+											if(guessResultArray[h] != 'W' && guessResultArray[h] != 'B') { 
+													guessResultArray[h] = 'W';
+													whitePins++;
+													}
 
-				}
 
-				}
+										}
 
-				}
+								}
 
-			}
+						}
+						//CHECKING FOR BLACKPINS 
+						if(currentGuessArray[i] == codeToGuessArray[i]) { 
+							//System.out.println("black match found at place:  "+ i + " 
+							//it is colorNumber: " + codeToGuessArray[i]);
+										if(guessResultArray[i] != 'B') {
+											blackPins ++;
+											guessResultArray[i] = 'B';
+										} 
+
+						}
+
+		}
 	
 		
 		System.out.println("Amount of whitePins: " + whitePins);
