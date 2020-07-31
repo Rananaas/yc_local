@@ -4,17 +4,19 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
-import javax.swing.JPanel;
 
 
-public class Window extends JPanel{
+public class Window {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public void paint(Graphics g) {
+	public Renderer renderer;
+	public static Window window;
+	
+	public static void paint(Graphics g) {
 
 		///colors: 
 		Color BROWN_BOARDBASE = new Color(153,102,0);
@@ -59,7 +61,7 @@ public class Window extends JPanel{
 	public void paintCode(Graphics g) {
 		System.out.println("PAINTING ELEMENTS ETC");
 
-	} 
+	}
 
 
 

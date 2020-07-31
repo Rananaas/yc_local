@@ -11,15 +11,33 @@ public class Game{
 	
 	public static int WIDTH = 1200;
 	public static int HEIGHT = 800;
+	//public static Renderer renderer = new Renderer();
+	//public Window window;
 	
-	public static void main(String[] args) {
+	public static Window window;
+	public Renderer renderer;
+	public static Game game;
+	
+	public static void main(String[] args)
+	//base
+	{ 
+		game = new Game(null);
 
-		JFrame jframe = new JFrame("welkomFrame");
-		jframe.getContentPane().add(new Window());
+	}
+	public Game(JFrame jframe) {
+
+		//Window window = new Window();
+
+		renderer = new Renderer();
+		jframe = new JFrame("welkomFrame");
+		//jframe.getContentPane().add(window);
+		jframe.add(renderer);
 		jframe.setTitle("MasterMind");
 		jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jframe.setSize(WIDTH, HEIGHT);
 		jframe.setResizable(false);
+		jframe.addMouseListener(new Introductie());
+		jframe.addKeyListener(new Introductie());
 		jframe.setVisible(true);
 
 		startUp(); // kan later weg al geimplementeerd is ipv console.
