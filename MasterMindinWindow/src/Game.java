@@ -1,4 +1,7 @@
 
+
+import java.awt.Graphics;
+
 import java.util.Scanner;
 
 import javax.swing.JFrame;
@@ -7,16 +10,20 @@ import javax.swing.JFrame;
 
 public class Game{
 
-	
-	
 	public static int WIDTH = 1200;
 	public static int HEIGHT = 800;
-	//public static Renderer renderer = new Renderer();
-	//public Window window;
 	
-	public static Window window;
+	// voor IntroductieClass: 
+	public boolean showColor1Selected = false;
+	public boolean showColor2Selected = false;
+	public boolean showColor3Selected = false;
+	public boolean showColor4Selected = false;
+	
+	//public Window window;
 	public Renderer renderer;
 	public static Game game;
+	Introductie introductie = new Introductie();
+	Window window = new Window();
 	
 	public static void main(String[] args)
 	//base
@@ -24,13 +31,14 @@ public class Game{
 		game = new Game(null);
 
 	}
+	
+	
 	public Game(JFrame jframe) {
 
-		//Window window = new Window();
 
+	
+		jframe = new JFrame();
 		renderer = new Renderer();
-		jframe = new JFrame("welkomFrame");
-		//jframe.getContentPane().add(window);
 		jframe.add(renderer);
 		jframe.setTitle("MasterMind");
 		jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -40,8 +48,8 @@ public class Game{
 		jframe.addKeyListener(new Introductie());
 		jframe.setVisible(true);
 
-		startUp(); // kan later weg al geimplementeerd is ipv console.
-
+		//startUp(); // kan later weg al geimplementeerd is ipv console.
+		
 	}
 	
 	public static void startUp() { 
@@ -98,6 +106,20 @@ public class Game{
 		
 		
 	}
+	public void repaint(Graphics g) {
+		System.out.println("he");
+		//Window window = new Window();	
+		window.paint(g, renderer);
+//		Introductie introductie = new Introductie();
+		introductie.introPart(g);
+	//	renderer.repaint();
+		
+	}
+//	public void repaintIntro(Graphics g) { 
+//		System.out.println("aasdsda");
+//		
+//	}
+
 
 
 }

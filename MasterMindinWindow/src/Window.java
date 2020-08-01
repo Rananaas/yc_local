@@ -13,10 +13,8 @@ public class Window {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public Renderer renderer;
-	public static Window window;
 	
-	public static void paint(Graphics g) {
+	public void paint(Graphics g, Renderer renderer) {
 
 		///colors: 
 		Color BROWN_BOARDBASE = new Color(153,102,0);
@@ -54,7 +52,9 @@ public class Window {
 			g.drawLine(YboardLine, 650, YboardLine, 700);
 		}
 		
-		Introductie.introPart(g2);
+		Introductie introductie = new Introductie();
+		introductie.introPart(g);
+		
 
 	}
 	

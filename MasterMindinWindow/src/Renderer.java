@@ -11,19 +11,22 @@ public class Renderer extends JPanel{
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 
-		Introductie.introPart(g);
-		Window.paint(g);
-	
+		//Window.paint(g);
+		//Introductie.introPart(g);
+		//Introductie.introductie.codePicker(g);
+		//Introductie.introPart(g);
+		//Window.window.paint(g);
 		
-		//Game.game.repaint(g);
-		
+		Game.game.repaint(g);
+		//Game.game.repaintIntro(g);
+
 		System.out.println("IN RENDERER!!!!");
 	}
 //
-	public void introPart(Graphics g) {
-		super.paintComponent(g);
-		Introductie.introPart(g);
-		
-	}
+//	public void introPart(Graphics g) {
+//		super.paintComponent(g);
+//		Introductie.introPart(g);
+//		
+//	}
 
 }

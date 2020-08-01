@@ -11,22 +11,14 @@ import java.awt.event.MouseListener;
 public class Introductie extends Window implements KeyListener, MouseListener{
 
 
-	
-	public boolean showColor1Selected = false;
-	public boolean showColor2Selected = false;
-	public boolean showColor3Selected = false;
-	public boolean showColor4Selected = false;
 
 	public static int xPosRect1 = 610;
 	public static int xPosRect2 = 720;
 	public static int xPosRect3 = 830;
 	public static int xPosRect4 = 940;
-/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 
-		public static void introPart(Graphics g) { 
+		
+	public void introPart(Graphics g) { 
 
 	
 			g.setFont(new Font("Monospace", Font.PLAIN, 20));
@@ -55,25 +47,39 @@ public class Introductie extends Window implements KeyListener, MouseListener{
 			g.drawRect(xPosRect2, 315, 100, 100);
 			g.drawRect(xPosRect3, 315, 100, 100);
 			g.drawRect(xPosRect4, 315, 100, 100);
-			
-			g.setFont(new Font("Monospace", Font.PLAIN, 45));
-			String showColor1 = " ? ";
-			String showColor2 = " ? ";
-			String showColor3 = " ? ";
-			String showColor4 = " ? ";
-			
-			g.drawString(showColor1, xIntroText+ 35, 400);
-			g.drawString(showColor2, xIntroText+ 145, 400);
-			g.drawString(showColor3, xIntroText+ 255, 400);
-			g.drawString(showColor4, xIntroText+ 370, 400);
-			
-			g.drawString(showColor1,100, 690);
-			g.drawString(showColor2, 150, 690);
-			g.drawString(showColor3, 200, 690);
-			g.drawString(showColor4, 250, 690);
-			
+
+			codePicker(g);
 
 } 
+	public void codePicker(Graphics g) { 
+		
+		g.setFont(new Font("Monospace", Font.PLAIN, 45));
+
+		
+		String showColor1 = " ? ";
+		String showColor2 = " ? ";
+		String showColor3 = " ? ";
+		String showColor4 = " ? ";
+
+
+		System.out.println("in codePicker" + "   -   showColor1Selected = " + Game.game.showColor1Selected);
+		if(Game.game.showColor1Selected == true) { 
+			showColor1 = "...";
+			System.out.println("ahaaaaaaaaa");
+		}
+
+		
+		g.drawString(showColor1, 635, 400);
+		g.drawString(showColor2, 745, 400);
+		g.drawString(showColor3, 855, 400);
+		g.drawString(showColor4, 970, 400);
+		
+		g.drawString(showColor1,100, 690);
+		g.drawString(showColor2, 150, 690);
+		g.drawString(showColor3, 200, 690);
+		g.drawString(showColor4, 250, 690);
+
+	}
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				int x = e.getX();
@@ -81,36 +87,38 @@ public class Introductie extends Window implements KeyListener, MouseListener{
 				// WORKS: //System.out.println("KLIKKERD");
 				//System.out.println("position click of mouse is : "+ x + " " + y);
 				if(x >= xPosRect1 && x <= xPosRect1+100 && y >= 315 && y <=415) {
-					showColor1Selected = true;
-					showColor2Selected = false;
-					showColor3Selected = false;
-					showColor4Selected = false;
-					String showColor1 = " ... ";
-					System.out.println("SEL 1");
+					Game.game.showColor1Selected = true;
+					Game.game.showColor2Selected = false;
+					Game.game.showColor3Selected = false;
+					Game.game.showColor4Selected = false;
+					System.out.println("SEL 1" + "   -   showColor1Selected = " + Game.game.showColor1Selected);
 
-					//renderer.paintComponent(g);
+					Game.game.renderer.repaint();
+
 				}
 				if(x >= xPosRect2 && x <= xPosRect2+100 && y >= 315 && y <=415) {
-					showColor1Selected = false;
-					showColor2Selected = true;
-					showColor3Selected = false;
-					showColor4Selected = false;
+					Game.game.showColor1Selected = false;
+					Game.game.showColor2Selected = true;
+					Game.game.showColor3Selected = false;
+					Game.game.showColor4Selected = false;
 					String showColor2 = " ... ";
 					System.out.println("SEL 2");
+					//renderer.repaint();
+					
 				}
 				if(x >= xPosRect3 && x <= xPosRect3+100 && y >= 315 && y <=415) {
-					showColor1Selected = false;
-					showColor2Selected = false;
-					showColor3Selected = true;
-					showColor4Selected = false;
+					Game.game.showColor1Selected = false;
+					Game.game.showColor2Selected = false;
+					Game.game.showColor3Selected = true;
+					Game.game.showColor4Selected = false;
 					String showColor3 = " ... ";
 					System.out.println("SEL 3");
 					
 				}	if(x >= xPosRect4 && x <= xPosRect4+100 && y >= 315 && y <=415) {
-					showColor1Selected = false;
-					showColor2Selected = false;
-					showColor3Selected = false;
-					showColor4Selected = true;
+					Game.game.showColor1Selected = false;
+					Game.game.showColor2Selected = false;
+					Game.game.showColor3Selected = false;
+					Game.game.showColor4Selected = true;
 					String showColor4 = " ... ";
 					System.out.println("SEL 4");
 				}
