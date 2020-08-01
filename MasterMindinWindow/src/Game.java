@@ -14,10 +14,17 @@ public class Game{
 	public static int HEIGHT = 800;
 	
 	// voor IntroductieClass: 
-	public boolean showColor1Selected = false;
+	public boolean showColor1Selected = true;
 	public boolean showColor2Selected = false;
 	public boolean showColor3Selected = false;
 	public boolean showColor4Selected = false;
+	public boolean redSelected = false;
+	public boolean greenSelected = false;
+	public boolean blueSelected = false;
+	public boolean yellowSelected = false;
+	public boolean pinkSelected = false;
+	public boolean orangeSelected = false;
+	
 	
 	//public Window window;
 	public Renderer renderer;
