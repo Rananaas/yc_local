@@ -24,7 +24,7 @@ public class Game{
 	public boolean yellowSelected = false;
 	public boolean pinkSelected = false;
 	public boolean orangeSelected = false;
-	
+	public boolean keyTypedNow = false;
 	
 	//public Window window;
 	public Renderer renderer;
@@ -114,19 +114,12 @@ public class Game{
 		
 	}
 	public void repaint(Graphics g) {
-		System.out.println("he");
-		//Window window = new Window();	
 		window.paint(g, renderer);
-//		Introductie introductie = new Introductie();
+
 		introductie.introPart(g);
 	//	renderer.repaint();
 		
 	}
-//	public void repaintIntro(Graphics g) { 
-//		System.out.println("aasdsda");
-//		
-//	}
-
 
 
 }

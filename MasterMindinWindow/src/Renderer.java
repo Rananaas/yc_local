@@ -9,7 +9,11 @@ public class Renderer extends JPanel{
 	// RENDERINGClass for refreshing:
 	@Override
 	protected void paintComponent(Graphics g) {
-		super.paintComponent(g);
+	
+		if(Game.game.keyTypedNow != true) { 
+			super.paintComponent(g);
+		}
+		
 
 		//Window.paint(g);
 		//Introductie.introPart(g);

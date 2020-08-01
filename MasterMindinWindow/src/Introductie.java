@@ -88,32 +88,35 @@ public class Introductie extends Window implements KeyListener, MouseListener{
 		String showColor4 = " ? ";
 
 		
-
+		Color color = fillSelected();
 		System.out.println("in codePicker" + "   -   showColor1Selected = " + Game.game.showColor1Selected);
 		if(Game.game.showColor1Selected == true) { 
-			Color color = fillSelected();
 			g.setColor(color);
 			g.fillRect(xPosRect1, 315, 100, 100);
-			g.setColor(Color.black);
+			g.setColor(Color.WHITE);
 			g.drawRect(xPosRect1,315, 100, 100);
+			g.setColor(Color.BLACK);
 		} else 
 			if(Game.game.showColor2Selected == true) { 
-			g.setColor(Color.gray);
+			g.setColor(color);
 			g.fillRect(xPosRect2, 315, 100, 100);
-			g.setColor(Color.black);
+			g.setColor(Color.WHITE);
 			g.drawRect(xPosRect2,315, 100, 100);
+			g.setColor(Color.black);
 		} else 
 			if(Game.game.showColor3Selected == true) { 
-			g.setColor(Color.gray);
+			g.setColor(color);
 			g.fillRect(xPosRect3, 315, 100, 100);
-			g.setColor(Color.black);
+			g.setColor(Color.WHITE);
 			g.drawRect(xPosRect3,315, 100, 100);
+			g.setColor(Color.black);
 		} else 
 			if(Game.game.showColor4Selected == true) { 
-			g.setColor(Color.gray);
+			g.setColor(color);
 			g.fillRect(xPosRect4, 315, 100, 100);
-			g.setColor(Color.black);
+			g.setColor(Color.WHITE);
 			g.drawRect(xPosRect4,315, 100, 100);
+			g.setColor(Color.black);
 		}
 		
 
@@ -185,6 +188,13 @@ public class Introductie extends Window implements KeyListener, MouseListener{
 			
 			@Override
 			public void keyTyped(KeyEvent e) {
+				
+				if (e.getKeyChar() == '1' || e.getKeyChar() == '2' || e.getKeyChar() == '3' || 
+						e.getKeyChar() == '4' || e.getKeyChar() == '5' || e.getKeyChar() == '6' ) { 
+					Game.game.keyTypedNow = true;
+				}
+					
+					
 				if(e.getKeyChar() == '1'){
 					System.out.println("1");
 					Game.game.redSelected = true;
