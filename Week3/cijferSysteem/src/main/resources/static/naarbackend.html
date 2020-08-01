@@ -1,0 +1,31 @@
+<style>
+    .mooi{
+        background-color: red;
+    }
+</style>
+<script>
+    function herewego(){
+    
+    document.getElementById("eenofander").innerHTML = ""; 
+
+        let xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function (){
+            console.log(xhr.readyState);
+            //document.getElementById("eenofander").innerHTML = this.responseText; // misschien lelijk
+            if (xhr.readyState == 3){
+                var alleinfo = JSON.parse(this.responseText);
+                for(var x = 0; x < alleinfo.length ; x++){
+                    document.getElementById("eenofander").innerHTML += "<div class=mooi>"+alleinfo[x].naam+"</div>";
+                }
+            }
+        }
+        xhr.open("GET","http://localhost:8082/nunetjes", true);
+        xhr.send();
+    }
+ </script>
+ <input type=button value="DaarGaanWe" onclick=herewego() >
+
+<div id=eenofander>tekst</div>
+
+
+

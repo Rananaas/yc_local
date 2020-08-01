@@ -17,6 +17,7 @@ public class LeerlingEndpoint {
 	@GetMapping("/leerlingOverzicht")
 	public Leerling probeerverbindingtemaken() {
 		System.out.println("HIJ DOET HET");
+		
 		return new Leerling();
 		
 	}
