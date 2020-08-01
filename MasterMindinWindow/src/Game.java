@@ -25,6 +25,7 @@ public class Game{
 	public boolean pinkSelected = false;
 	public boolean orangeSelected = false;
 	public boolean keyTypedNow = false;
+	public boolean codeConfirmed = false;
 	
 	//public Window window;
 	public Renderer renderer;

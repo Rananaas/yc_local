@@ -8,12 +8,6 @@ import java.awt.Graphics2D;
 
 public class Window {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
-	
 	public void paint(Graphics g, Renderer renderer) {
 
 		///colors: 

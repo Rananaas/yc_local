@@ -7,6 +7,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Arrays;
 
 public class Introductie extends Window implements KeyListener, MouseListener{
 
@@ -17,6 +18,8 @@ public class Introductie extends Window implements KeyListener, MouseListener{
 	public static int xPosRect3 = 830;
 	public static int xPosRect4 = 940;
 
+	Color[] codeToGuessArray = new Color[4];
+	
 		
 	public void introPart(Graphics g) { 
 
@@ -27,6 +30,7 @@ public class Introductie extends Window implements KeyListener, MouseListener{
 			g.drawString("NEED HELP? Hit 'H' to read how the game works", xIntroText+10, 175);
 			g.drawString("Speler 1 mag een code invoeren...", xIntroText+10,275);
 			g.drawString("Klik op een vakje en typ het cijfer van de gewenste kleur in..", xIntroText+10,300);
+			g.drawString("ENTER om code te bevestigen", xIntroText+10,450);
 			
 			g.setColor(Color.RED);
 			g.drawString("Typ 1 voor ROOD", xIntroText+10, 500);
@@ -89,9 +93,9 @@ public class Introductie extends Window implements KeyListener, MouseListener{
 
 		
 		Color color = fillSelected();
-		System.out.println("in codePicker" + "   -   showColor1Selected = " + Game.game.showColor1Selected);
 		if(Game.game.showColor1Selected == true) { 
 			g.setColor(color);
+			codeToGuessArray[0] = color;
 			g.fillRect(xPosRect1, 315, 100, 100);
 			g.setColor(Color.WHITE);
 			g.drawRect(xPosRect1,315, 100, 100);
@@ -99,6 +103,7 @@ public class Introductie extends Window implements KeyListener, MouseListener{
 		} else 
 			if(Game.game.showColor2Selected == true) { 
 			g.setColor(color);
+			codeToGuessArray[1] = color;
 			g.fillRect(xPosRect2, 315, 100, 100);
 			g.setColor(Color.WHITE);
 			g.drawRect(xPosRect2,315, 100, 100);
@@ -106,6 +111,7 @@ public class Introductie extends Window implements KeyListener, MouseListener{
 		} else 
 			if(Game.game.showColor3Selected == true) { 
 			g.setColor(color);
+			codeToGuessArray[2] = color;
 			g.fillRect(xPosRect3, 315, 100, 100);
 			g.setColor(Color.WHITE);
 			g.drawRect(xPosRect3,315, 100, 100);
@@ -113,13 +119,16 @@ public class Introductie extends Window implements KeyListener, MouseListener{
 		} else 
 			if(Game.game.showColor4Selected == true) { 
 			g.setColor(color);
+			codeToGuessArray[3] = color;
 			g.fillRect(xPosRect4, 315, 100, 100);
 			g.setColor(Color.WHITE);
 			g.drawRect(xPosRect4,315, 100, 100);
 			g.setColor(Color.black);
 		}
 		
+		System.out.println("codeToGuessArray: " + Arrays.toString(codeToGuessArray));
 
+		
 		
 		g.drawString(showColor1, 635, 400);
 		g.drawString(showColor2, 745, 400);
@@ -144,8 +153,8 @@ public class Introductie extends Window implements KeyListener, MouseListener{
 					Game.game.showColor2Selected = false;
 					Game.game.showColor3Selected = false;
 					Game.game.showColor4Selected = false;
-					System.out.println("SEL 1" + "   -   showColor1Selected = " + Game.game.showColor1Selected);
-
+					System.out.println("SEL 1");
+					
 					Game.game.renderer.repaint();
 
 				}
@@ -154,7 +163,6 @@ public class Introductie extends Window implements KeyListener, MouseListener{
 					Game.game.showColor2Selected = true;
 					Game.game.showColor3Selected = false;
 					Game.game.showColor4Selected = false;
-					String showColor2 = " ... ";
 					System.out.println("SEL 2");
 
 					Game.game.renderer.repaint();
@@ -165,7 +173,6 @@ public class Introductie extends Window implements KeyListener, MouseListener{
 					Game.game.showColor2Selected = false;
 					Game.game.showColor3Selected = true;
 					Game.game.showColor4Selected = false;
-					String showColor3 = " ... ";
 					System.out.println("SEL 3");
 
 					Game.game.renderer.repaint();
@@ -175,7 +182,6 @@ public class Introductie extends Window implements KeyListener, MouseListener{
 					Game.game.showColor2Selected = false;
 					Game.game.showColor3Selected = false;
 					Game.game.showColor4Selected = true;
-					String showColor4 = " ... ";
 					System.out.println("SEL 4");
 
 					Game.game.renderer.repaint();
@@ -193,7 +199,7 @@ public class Introductie extends Window implements KeyListener, MouseListener{
 						e.getKeyChar() == '4' || e.getKeyChar() == '5' || e.getKeyChar() == '6' ) { 
 					Game.game.keyTypedNow = true;
 				}
-					
+
 					
 				if(e.getKeyChar() == '1'){
 					System.out.println("1");
@@ -250,47 +256,21 @@ public class Introductie extends Window implements KeyListener, MouseListener{
 						Game.game.pinkSelected = false;
 						Game.game.orangeSelected = true;
 						}
+
+				
 				Game.game.renderer.repaint();
 				} 
-
-			
-
-//		
-//		if(codeToGuess.length() != 4) { 
-//			
-//			if(codeToGuess.equals("h")) { 
-//				explainGame();
-//			} else
-//				System.out.println("CODE MUST BE 4 NUMBERS");
-//				startUp();
-//		}
-//		else {
-//		System.out.println("code to guess is:  "+ codeToGuess);
-//		System.out.println("Hit S to start game with this code");
-//		System.out.println("Hit q to enter other code");
-//		System.out.println("Hit h to read how the game works");
-//		} 
-//		Scanner confirmCodeScanner = new Scanner(System.in);
-//		String confirmCode = confirmCodeScanner.nextLine();
-//		
-//		if(confirmCode.equals("s")) { 
-//			char[] codeToGuessArray = codeToGuess.toCharArray();
-//			
-//			playing.letsgo(codeToGuessArray);
-//		}
-//		if(confirmCode.equals("q")) { 
-//			startUp();
-//		}
-//		if(confirmCode.equals("h")) { 
-//			explainGame();
-	
 
 
 
 @Override
 public void keyPressed(KeyEvent e) {
-	// TODO Auto-generated method stub
 	
+	if(e.getKeyCode() == KeyEvent.VK_ENTER){
+	 System.out.println("CONFIRMING CODE! LETS GO!");
+	 Game.game.codeConfirmed = true;
+		
+	}	
 }
 
 @Override
